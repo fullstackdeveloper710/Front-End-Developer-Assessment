@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Globe, Moon, Sun, User } from 'lucide-react'
 import { useTheme } from '@/context/ThemeContext'
+import type { NavLink } from '@/types/navbar'
 
-const NAV_LINKS = [
+const NAV_LINKS: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '#' },
   { label: 'How It Works', to: '#' },

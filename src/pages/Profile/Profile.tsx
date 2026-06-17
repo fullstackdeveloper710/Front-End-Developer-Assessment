@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { User, Eye, Search, Star, CreditCard, FileText } from 'lucide-react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
+import type { Benefit, ProfileData } from '@/types/profile'
 
-const BENEFITS = [
+const BENEFITS: Benefit[] = [
   { icon: Eye, label: 'View unlimited players' },
   { icon: Search, label: 'Unlimited Search by Country Results' },
   { icon: Star, label: 'Create collections of your favorite players' },
 ]
 
 function useProfile() {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<ProfileData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -80,7 +82,9 @@ export default function Profile() {
         <Card className="border-t-2 border-primary-500">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-gray-200">Upgrade to a paid plan for additional benefits</p>
-            <Button>Upgrade Plan</Button>
+            <Button as={Link} to="/profile/upgrade-plan">
+              Upgrade Plan
+            </Button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {BENEFITS.map(({ icon: Icon, label }) => (
