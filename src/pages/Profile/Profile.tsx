@@ -119,7 +119,7 @@ export default function Profile() {
               <Card className="flex items-center flex-wrap md:gap-0 gap-3 justify-between border-[#FFFFFF08] border bg-transparent px-6 py-4">
                 <div className="flex items-center gap-3">
                   <img src={creditCard} alt="Credit Card" className=" " />
-                  <p className="text-lg font-medium">
+                  <p className="text-lg font-medium !text-white">
                     {data.paymentMethod
                       ? data.paymentMethod
                       : 'You have not chosen any payment method yet'}
@@ -133,7 +133,7 @@ export default function Profile() {
               <h3 className="md:text-xl text-lg font-medium text-white mb-2">Payment History</h3>
               <Card className="flex items-center gap-3 border-[#FFFFFF08] border bg-transparent px-6 py-4">
                 <img src={bill} alt="Bill" className=" " />
-                <p className="text-lg font-medium">
+                <p className="text-lg font-medium !text-white">
                   {data.paymentHistory.length === 0
                     ? 'You have no payment history'
                     : `${data.paymentHistory.length} transactions`}
