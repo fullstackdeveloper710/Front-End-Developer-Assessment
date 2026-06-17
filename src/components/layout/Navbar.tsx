@@ -16,10 +16,11 @@ const NAV_LINKS: NavLink[] = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchScope, setSearchScope] = useState<'player' | 'country'>('player')
 
   return (
-    <nav className="relative flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-800 lg:px-6">
-      <div className="flex items-center gap-3 lg:gap-8">
+    <nav className="relative flex items-center justify-between px-2 py-3 bg-[#292E41]  lg:px-6">
+      <div className="flex items-center gap-2 lg:gap-8">
         <button
           type="button"
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -32,7 +33,7 @@ export default function Navbar() {
         </button>
         <Link to="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
           <img src={fav} alt="fav" />
-          <span className="font-bold tracking-wide text-white text-base md:text-xl lg:text-base xl:text-xl">DUAL NATIONALS</span>
+          <span className="font-bold tracking-[-0.02em] text-white text-base md:text-xl lg:text-base xl:text-xl">DUAL NATIONALS</span>
         </Link>
         <div className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map(({ label, to }) => (
@@ -43,14 +44,35 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        className={`hidden min-w-0 items-center gap-2 rounded-full border border-gray-700 bg-gray-800/60 px-3 py-1.5 mx-2 sm:mx-4 md:flex md:max-w-md transition-all duration-300 ease-out origin-left lg:flex-1 lg:!w-auto lg:scale-x-100 lg:opacity-100 lg:!px-3 lg:!mx-4 lg:border ${isSearchOpen ? 'flex-1 scale-x-100 opacity-100' : 'flex-none w-0 scale-x-0 opacity-0 !px-0 !mx-0 overflow-hidden border-0'
+        className={`hidden min-w-0 items-center mx-2 sm:mx-4 md:flex md:max-w-md transition-all duration-300 ease-out origin-left lg:flex-1 lg:!w-auto lg:scale-x-100 lg:opacity-100 ${isSearchOpen ? 'flex-1 scale-x-100 opacity-100' : 'flex-none w-0 scale-x-0 opacity-0 overflow-hidden'
           }`}
       >
-        <Search size={18} className="shrink-0 text-gray-400" />
-        <span className="shrink-0 rounded-full bg-blue-600 px-2 py-0.5 text-xs font-medium text-white">
-          Player
-        </span>
-        <span className="truncate text-sm text-gray-400">Country</span>
+        <div className="flex w-full min-w-0 items-center gap-2 rounded-lg border border-white/10 bg-gray-800/60 px-2 py-1">
+          <Search size={16} className="ml-1 shrink-0 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full min-w-0 truncate bg-transparent text-sm text-gray-200 placeholder:text-gray-400 focus:outline-none"
+          />
+          <div className="flex shrink-0 items-center gap-0.5 rounded-full bg-white/10 p-0.5">
+            <button
+              type="button"
+              onClick={() => setSearchScope('player')}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${searchScope === 'player' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'
+                }`}
+            >
+              Player
+            </button>
+            <button
+              type="button"
+              onClick={() => setSearchScope('country')}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${searchScope === 'country' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'
+                }`}
+            >
+              Country
+            </button>
+          </div>
+        </div>
       </div>
       <div className="flex items-center gap-2 sm:gap-3">
         <button
@@ -95,11 +117,31 @@ export default function Navbar() {
         className={`absolute left-0 right-0 top-full z-50 border-b border-gray-800 bg-[#1A1E2C] px-4 py-4 shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out md:hidden ${isSearchOpen ? 'pointer-events-auto visible translate-y-0 opacity-100' : 'pointer-events-none invisible -translate-y-2 opacity-0'
           }`}
       >
-        <div className="flex items-center gap-2 rounded-full border border-gray-700 bg-gray-800/60 px-3 py-1.5">
-          <span className="shrink-0 rounded-full bg-blue-600 px-2 py-0.5 text-xs font-medium text-white">
-            Player
-          </span>
-          <span className="truncate text-sm text-gray-400">Country</span>
+        <div className="flex items-center gap-2 rounded-full border border-gray-700 bg-gray-800/60 px-2 py-1">
+          <Search size={16} className="ml-1 shrink-0 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full min-w-0 bg-transparent text-sm text-gray-200 placeholder:text-gray-400 focus:outline-none"
+          />
+          <div className="flex shrink-0 items-center gap-0.5 rounded-full bg-white/10 p-0.5">
+            <button
+              type="button"
+              onClick={() => setSearchScope('player')}
+              className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${searchScope === 'player' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'
+                }`}
+            >
+              Player
+            </button>
+            <button
+              type="button"
+              onClick={() => setSearchScope('country')}
+              className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${searchScope === 'country' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white'
+                }`}
+            >
+              Country
+            </button>
+          </div>
         </div>
       </div>
     </nav>

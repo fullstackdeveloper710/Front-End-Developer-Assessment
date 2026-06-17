@@ -32,7 +32,7 @@ export default function PlanCard({ plan, accent, price, isCurrent, onChoose }: P
         </ul>
       </div>
 
-      <div className="flex md:flex-col items-center md:justify-center justify-between gap-2 mt-6 lg:min-h-20">
+      <div className="flex md:flex-col items-center justify-between gap-2 mt-6 lg:min-h-20">
         {isCurrent ? (
           <>
             <Button variant="secondary" disabled className="py-3 px-6 text-white text-base bg-white/10 border-none opacity-70 cursor-not-allowed">
