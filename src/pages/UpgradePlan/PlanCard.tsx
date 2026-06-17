@@ -17,7 +17,7 @@ export default function PlanCard({ plan, accent, price, isCurrent, onChoose }: P
     <Card className={cn('flex flex-col !rounded-[4px] justify-between', accent.border)}>
       <div>
         <div className="md:block flex justify-between items-center mb-4">
-          <h2 className="font-semibold text-lg">{plan.name}</h2>
+          <h2 className="font-semibold text-lg !text-white/95">{plan.name}</h2>
           <p className="text-lg font-semibold mb-3">
             {price === 0 ? '$0.00' : `$${price.toFixed(2)}`}
           </p>
