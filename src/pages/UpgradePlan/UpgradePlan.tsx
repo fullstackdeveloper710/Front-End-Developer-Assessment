@@ -7,10 +7,10 @@ import type { Plan, PlanId, PlanAccent } from '@/types/plan'
 import PlanCard from './PlanCard'
 
 const ACCENTS: Record<PlanId, PlanAccent> = {
-  free: { border: '', check: 'text-gray-400' },
-  premium: { border: 'border-t-2 border-primary-500', check: 'text-primary-500' },
-  player: { border: 'border-t-2 border-primary-500', check: 'text-primary-500' },
-  admin: { border: 'border-t-2 border-green-500', check: 'text-green-500' },
+  free: { border: 'border-t-4 border-[#ECEDEF]', check: 'text-gray-400' },
+  premium: { border: 'bordergredientBlue', check: 'text-primary-500' },
+  player: { border: 'bordergredientLightBlue', check: 'text-primary-500' },
+  admin: { border: 'bordergredientGreen', check: 'text-green-500' },
 }
 
 function usePlans() {
@@ -75,67 +75,74 @@ export default function UpgradePlan() {
   const [isYearly, setIsYearly] = useState(false)
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="p-6">
-      <div className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-        <Link to="/profile" className="hover:text-white">
-          Profile
-        </Link>
-        <ChevronRight size={14} />
-        <span className="text-gray-200">Upgrade Plan</span>
-      </div>
-
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-semibold text-gray-100">Upgrade Plan</h1>
-
-        <div className="flex items-center gap-1 bg-gray-800 rounded-full p-1">
-          <button
-            onClick={() => setIsYearly(false)}
-            className={cn(
-              'px-4 py-1.5 rounded-full text-sm font-medium transition-colors',
-              !isYearly ? 'bg-white text-gray-900' : 'text-gray-300'
-            )}
-          >
-            Monthly
-          </button>
-          <button
-            onClick={() => setIsYearly(true)}
-            className={cn(
-              'px-4 py-1.5 rounded-full text-sm font-medium transition-colors flex items-center gap-1',
-              isYearly ? 'bg-white text-gray-900' : 'text-gray-300'
-            )}
-          >
-            Yearly
-            <span className={cn('text-xs', isYearly ? 'text-green-600' : 'text-green-400')}>
-              Save 25%
-            </span>
-          </button>
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="">
+      <main className="bg-[#1A1E2C]  pb-6">
+        <div className="flex items-center gap-2 text-sm text-gray-400 mb-4 px-6 py-5">
+          <Link to="/profile" className="hover:text-white">
+            Profile
+          </Link>
+          <ChevronRight size={14} />
+          <span className="text-gray-200">Upgrade Plan</span>
         </div>
-      </div>
 
-      {loading ? (
-        <p className="text-gray-400">Loading plans...</p>
-      ) : plans.length === 0 ? (
-        <p className="text-gray-400">No plans available.</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-          {plans.map((plan) => {
-            const accent = ACCENTS[plan.id]
-            const isCurrent = plan.id === currentPlanId
-            const price = isYearly ? plan.priceYearly : plan.priceMonthly
 
-            return (
-              <PlanCard
-                key={plan.id}
-                plan={plan}
-                accent={accent}
-                price={price}
-                isCurrent={isCurrent}
-                onChoose={() => setCurrentPlanId(plan.id)}
-              />
-            )
-          })}
+        <div className="container">
+
+          <div className="flex items-center justify-between md:flex-nowrap flex-wrap gap-4 mb-6">
+            <h1 className="text-2xl font-semibold text-gray-100">Upgrade Plan</h1>
+
+            <div className="flex md:w-auto w-full items-center gap-1 bg-[#272B3F] rounded-full p-2">
+              <button
+                onClick={() => setIsYearly(false)}
+                className={cn(
+                  'px-4 py-1.5 rounded-full flex-1 text-center font-semibold transition-colors',
+                  !isYearly ? 'bg-white text-gray-900' : 'text-gray-300'
+                )}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setIsYearly(true)}
+                className={cn(
+                  'px-4 py-1.5 rounded-full flex-1 justify-center font-semibold transition-colors flex items-center gap-1',
+                  isYearly ? 'bg-white text-gray-900' : 'text-white'
+                )}
+              >
+                Yearly
+                <span className={cn('font-normal whitespace-nowrap', isYearly ? 'text-[#00C8BC]' : 'text-[#00C8BC]')}>
+                  Save 25%
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {loading ? (
+            <p className="text-gray-400">Loading plans...</p>
+          ) : plans.length === 0 ? (
+            <p className="text-gray-400">No plans available.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+              {plans.map((plan) => {
+                const accent = ACCENTS[plan.id]
+                const isCurrent = plan.id === currentPlanId
+                const price = isYearly ? plan.priceYearly : plan.priceMonthly
+
+                return (
+                  <PlanCard
+                    key={plan.id}
+                    plan={plan}
+                    accent={accent}
+                    price={price}
+                    isCurrent={isCurrent}
+                    onChoose={() => setCurrentPlanId(plan.id)}
+                  />
+                )
+              })}
+            </div>
+          )}
         </div>
-      )}
+      </main>
+
     </motion.div>
   )
 }
