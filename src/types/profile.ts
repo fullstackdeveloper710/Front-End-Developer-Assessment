@@ -1,7 +1,7 @@
-import type { LucideIcon } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 export interface Benefit {
-  icon: any
+  icon: ReactNode
   label: string
 }
 
