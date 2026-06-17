@@ -89,8 +89,8 @@ export default function Profile() {
             <div>
               <h3 className="md:text-xl text-lg font-medium text-white mb-2">Your plan</h3>
               <Card className="px-6 py-4">
-                <p className="font-semibold text-xl text-white">{data.plan.name}</p>
-                <p className="md:text-xs md:text-white/70 text-white">Registered {data.plan.registeredAt}</p>
+                <p className="font-semibold text-xl !text-white">{data.plan.name}</p>
+                <p className="md:text-xs md:text-white/70 !text-white">Registered {data.plan.registeredAt}</p>
               </Card>
             </div>
 
