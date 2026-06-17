@@ -50,9 +50,9 @@ export default function Profile() {
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
+      className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
     >
-      <Card className="lg:col-span-1 flex flex-col items-center text-center gap-3">
+      <Card className="lg:col-span-1 flex flex-col items-start  gap-3">
         <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
           {data.avatarUrl ? (
             <img src={data.avatarUrl} alt={data.name} className="w-full h-full object-cover" />
@@ -61,18 +61,18 @@ export default function Profile() {
           )}
         </div>
         <div>
-          <h2 className="font-semibold text-gray-100">{data.name}</h2>
-          <p className="text-sm text-gray-400">{data.email}</p>
+          <h2 className="font-bold text-white lg:text-2xl text-lg">{data.name}</h2>
+          <p className="text-white">{data.email}</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="secondary">Edit Profile</Button>
-          <Button variant="secondary">Reset Password</Button>
+          <Button className='border-[#FFFFFF33] bg-transparent' variant="secondary">Edit Profile</Button>
+          <Button className='border-[#FFFFFF33] bg-transparent'  variant="secondary">Reset Password</Button>
         </div>
       </Card>
 
       <div className="lg:col-span-2 flex flex-col gap-4">
         <div>
-          <h3 className="text-sm text-gray-400 mb-2">Your plan</h3>
+          <h3 className="text-xl font-medium text-white mb-2">Your plan</h3>
           <Card>
             <p className="font-semibold text-gray-100">{data.plan.name}</p>
             <p className="text-xs text-gray-400">Registered {data.plan.registeredAt}</p>
@@ -82,7 +82,7 @@ export default function Profile() {
         <Card className="border-t-2 border-primary-500">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-gray-200">Upgrade to a paid plan for additional benefits</p>
-            <Button as={Link} to="/profile/upgrade-plan">
+            <Button className='bg-white' as={Link} to="/profile/upgrade-plan">
               Upgrade Plan
             </Button>
           </div>
@@ -110,7 +110,7 @@ export default function Profile() {
                   : 'You have not chosen any payment method yet'}
               </p>
             </div>
-            <Button>Add Payment Method</Button>
+            <Button className='bg-white'>Add Payment Method</Button>
           </Card>
         </div>
 

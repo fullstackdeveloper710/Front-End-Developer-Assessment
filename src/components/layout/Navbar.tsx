@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Globe, Moon, Sun, User } from 'lucide-react'
 import { useTheme } from '@/context/ThemeContext'
 import type { NavLink } from '@/types/navbar'
-
+import fav from "../../assets/icons/fav.svg"
 const NAV_LINKS: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '#' },
@@ -18,12 +18,12 @@ export default function Navbar() {
     <nav className="flex items-center justify-between px-6 py-3 bg-gray-900 border-b border-gray-800">
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center gap-2">
-          <span className="w-6 h-6 rounded bg-gradient-to-br from-primary-500 to-primary-700" />
-          <span className="font-bold tracking-wide text-white text-sm">DUAL NATIONALS</span>
+          <img src={fav} alt="fav" />
+          <span className="font-bold tracking-wide text-white text-xl lg:text-base xl:text-xl">DUAL NATIONALS</span>
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map(({ label, to }) => (
-            <Link key={label} to={to} className="text-sm text-gray-300 hover:text-white">
+            <Link key={label} to={to} className="text-sm xl:text-base font-medium hover:text-gray-300 text-white">
               {label}
             </Link>
           ))}

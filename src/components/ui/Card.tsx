@@ -6,7 +6,7 @@ type Props = ComponentPropsWithoutRef<'div'>
 export default function Card({ className, children, ...props }: Props) {
   return (
     <div
-      className={cn('rounded-xl bg-gray-800/60 border border-gray-700/60 p-4', className)}
+      className={cn('rounded-xl bg-[#22273B]  p-6', className)}
       {...props}
     >
       {children}
